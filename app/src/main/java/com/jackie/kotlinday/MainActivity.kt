@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-    findViewById<TextView>(R.id.tv).text="hello kotlin"
+    findViewById<TextView>(R.id.tv).text="hello world"
     }
 
 }
