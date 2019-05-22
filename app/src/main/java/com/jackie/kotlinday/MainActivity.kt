@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
     var sInt = listOf(1, 2, 3, 4, 5)
     lateinit var person1:Person
     lateinit var person2:Person
+    lateinit var stu1:Student
 
     override fun onCreate(savedInstanceState: Bundle?) {//加"?"表示可以围null
         super.onCreate(savedInstanceState)
@@ -29,17 +30,21 @@ class MainActivity : AppCompatActivity() {
 
 //        tv.setOnClickListener { show.text="${s.replace("l","o")}"}//"${forAdd(10)}" }
 //        tv.setOnClickListener { show.text = tTable().toString() }
-        tv.setOnClickListener { show.text = person2.name }
+        tv.setOnClickListener { show.text = Student.age.toString()}
         myObs = MyObserver()
         lifecycle.addObserver(myObs)
         ab.indices
 
-        person1 = Person("zhangsan");
+        person1 = Person("zhangsan")
         person2 = Person("zhangsi",178)
 
         show.text=person1.name
+
     }
 
+    fun Person.showName():String{
+        return "ddfdf"
+    }
     fun tTable(): Int {
         var sum: Int = 0;
         sInt.forEach ss@{

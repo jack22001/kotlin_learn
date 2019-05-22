@@ -1,8 +1,8 @@
 package com.jackie.kotlinday
 
-class Person constructor(name:String) {
+open class Person constructor(name:String) {
     lateinit var name:String
-    var height:Int = 100
+    open var height:Int = 100
         get() = field
         set(value) {
             if(value>200)
@@ -10,6 +10,7 @@ class Person constructor(name:String) {
             else
                 field = value
         }
+    open val content:String = "dfsf"
     init {
         this.name = name
     }
