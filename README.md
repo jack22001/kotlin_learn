@@ -195,3 +195,23 @@ is运算符 类似 instanceof
    2. 当同名是，类内的函数优先用类内的扩展
    3. 类内的伴生扩展只能被类内的函数使用，类外的函数和类伴生函数不能用
    4. 类外的伴生扩展，可以被类内的伴生对象的函数使用
+# 数据类
+   可以定义只包含数据的类，关键字为 data
+    data class User(val name:String,val age:Int)
+   1. 至少包含一个参数
+   2. 参数必须val，var
+   3. 不能声明为abstract，open,sealed或者inner
+   4. 数据类不能继承其他类，但是可以实现接口
+   # 标准数据类 Pair, Triple
+   数据类到底有什么用呢
+# 密封类 sealed 修饰 
+   #可以理解成专门为when表达式服务的
+    sealed class UiOP{
+        objeckt hide:UiOP()
+        objeckt show:UiOP()
+    }
+
+# 泛型  参数化类型
+   #泛型约束 
+   
+# 委托  by关键字

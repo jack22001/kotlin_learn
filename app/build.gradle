@@ -33,6 +33,6 @@ dependencies {
 
     // Architecture components
 //    implementation deps.lifecycle.runtime
-//    implementation deps.lifecycle.extensions
+    implementation deps.lifecycle.extensions
 //    annotationProcessor deps.lifecycle.compiler
 }

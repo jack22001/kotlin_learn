@@ -2,8 +2,16 @@ package com.jackie.kotlinday
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.TextView
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import com.jackie.kotlinday.decoratetest.Command
+import com.jackie.kotlinday.decoratetest.LoggerCommand
+import com.jackie.kotlinday.decoratetest.PayOrderCom
+import com.jackie.kotlinday.decoratetest.PerformanceCom
+import com.jackie.kotlinday.model.LiveDataTestViewModel
+import com.jackie.kotlinday.model.Product
+import com.jackie.kotlinday.model.TestViewModel
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,21 +26,30 @@ class MainActivity : AppCompatActivity() {
     lateinit var person1:Person
     lateinit var person2:Person
     lateinit var stu1:Student
+    lateinit var pay:Command
+    lateinit var model:TestViewModel
+
+    lateinit var productModel:LiveDataTestViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {//加"?"表示可以围null
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         tv = findViewById(R.id.tv)
-        show = findViewById(R.id.showText);
+        show = findViewById(R.id.showText)
         tv.text = "hello"
         val s = "hello world"
 
 //        tv.setOnClickListener { show.text="${s.replace("l","o")}"}//"${forAdd(10)}" }
 //        tv.setOnClickListener { show.text = tTable().toString() }
-        tv.setOnClickListener { show.text = Student.age.toString()}
+//        tv.setOnClickListener { show.text = Student.age.toString()}
+        tv.setOnClickListener {
+//            val name:String = "jackie"
+//            productModel.currentName.value = name
+            productModel.currentPro.value = Product("jackie","good")
+        }
         myObs = MyObserver()
-        lifecycle.addObserver(myObs)
+//        lifecycle.addObserver(myObs)
         ab.indices
 
         person1 = Person("zhangsan")
@@ -40,11 +57,31 @@ class MainActivity : AppCompatActivity() {
 
         show.text=person1.name
 
+        pay = LoggerCommand(PerformanceCom(PayOrderCom()))
+        pay.excute()
+
+//        model = ViewModelProviders.of(this).get(L)
+
+        productModel = ViewModelProviders.of(this).get(LiveDataTestViewModel::class.java)
+
+        val nameObserver = Observer<Product>{
+            name->show.text = name.name+"~"+name.description
+        }
+        productModel.currentPro.observe(this,nameObserver)
+
     }
 
     fun Person.showName():String{
         return "ddfdf"
     }
+
+//    fun <T> sort(value:T){
+//        when(value){
+//            is Int -> return 5
+//            is String -> return "dddd"
+//            else ->return value
+//        }
+//    }
     fun tTable(): Int {
         var sum: Int = 0;
         sInt.forEach ss@{
